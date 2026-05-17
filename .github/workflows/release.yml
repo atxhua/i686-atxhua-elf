@@ -1,0 +1,69 @@
+# Base on .github/workflows/release.yml from atxhua/i686-atxhua-elf-tools (MIT) repo
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      gcc_version:
+        required: true
+        type: string
+
+      binutils_version:
+        required: true
+        type: string
+
+      gdb_version:
+        required: true
+        type: string
+
+      newlib_version:
+        required: true
+        type: string
+
+      picolib_version:
+        required: true
+        type: string
+
+
+jobs:
+  i686:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v6
+      with:
+        submodules: true
+
+    - name: build
+      run:  ./i686-atxhua-elf-tools/i686-elf-tools.sh binutils gcc gdb newlib picolib zip linux -m -parallel -gv ${{ inputs.gcc_version }} -bv ${{ inputs.binutils_version }} -dv ${{ inputs.gdb_version }} -nv ${{ inputs.newlib_version }} -pv ${{ inputs.picolib_version }} -pp i686-atxhua-elf
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: i686-elf-tools
+        path: |
+          /home/runner/build-i686-elf/i686-atxhua-elf*.zip
+          /home/runner/build-i686-elf/i686-atxhua-elf*.tar.gz
+
+  release:
+    runs-on: ubuntu-22.04
+    needs: [i686]
+
+    steps:
+    - uses: actions/download-artifact@v4.1.7
+
+    - name: release
+      uses: softprops/action-gh-release@v0.1.15
+      with:
+        name: GCC ${{ inputs.gcc_version }}
+        tag_name: ${{ inputs.gcc_version }}
+        fail_on_unmatched_files: false
+        draft: true
+        files: |
+          **/*.zip
+          **/*.tar.gz
+        body: |
+          - GCC ${{ inputs.gcc_version }}
+          - Binutils ${{ inputs.binutils_version }}
+          - GDB ${{ inputs.gdb_version }}
+          - Newlib ${{ inputs.newlib_version }}
+          - Picolib ${{ inputs.picolib_version }}

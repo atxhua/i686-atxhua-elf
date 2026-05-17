@@ -2,7 +2,7 @@
 
 A multi runtime library ( Newlib + Picolib) cross-compiler ecosystem designed for bare-metal `i686-elf` targets. This repository contains the automated build orchestration framework that integrates **GNU Binutils**, **GCC**, **GDB**, **Newlib**, and **Picolibc** into a single unified toolchain distribution.
 
-## 🌟 The 2D Compilation Matrix
+## The 2D Compilation Matrix
 
 ### The Supported Compilation Grid:
 | Machine Profile Flag | Axis 1: Standard Runtime (Newlib) | Axis 2: Low-Footprint Runtime (Picolibc) |
@@ -14,7 +14,7 @@ A multi runtime library ( Newlib + Picolib) cross-compiler ecosystem designed fo
 
 ---
 
-## Usage: 🔄 Selecting the C Library Runtime
+## Usage: Selecting the C Library Runtime
 Because this toolchain embeds both runtimes into a unified system root, switching between standard POSIX **Newlib** and the ultra-lean **Picolibc** requires zero re-configuration of the compiler binaries. The runtime selection is controlled completely by passing or omitting the target specs parameter during the C Compilation and Linking stages.
 
 ### Using Newlib

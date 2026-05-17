@@ -1,0 +1,3 @@
+[submodule "i686-atxhua-elf-tools"]
+	path = i686-atxhua-elf-tools
+	url = https://github.com/atxhua/i686-atxhua-elf-tools.git

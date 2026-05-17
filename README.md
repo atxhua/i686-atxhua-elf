@@ -1,6 +1,6 @@
 # i686-atxhua-elf-tools
 
-A multi runtime library ( Newlib + Picolib) cross-compiler ecosystem designed for bare-metal `i686-elf` targets. This repository contains the automated build orchestration framework that integrates **GNU Binutils**, **GCC**, **GDB**, **Newlib**, and **Picolibc** into a single unified toolchain distribution.
+A multi runtime library ( Newlib + Picolib) cross-compiler for bare-metal `i686-elf` targets. This repository integrates **GNU Binutils**, **GCC**, **GDB**, **Newlib**, and **Picolibc** into a single unified toolchain distribution.
 
 ## The 2D Compilation Matrix
 
